@@ -22,10 +22,16 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
+function addReadButton(tr) {
+    const readButton = document.createElement('button');
+    readButton.textContent = 'Read?';
+    readButton.addEventListener('click', toggleRead);
+    tr.appendChild(readButton);
+}
+
 function addRemoveButton(tr, index) {
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove Book';
-    removeButton.classList.add('remove-button')
     removeButton.setAttribute('data-index', index);
     removeButton.addEventListener('click', removeBook);
     tr.appendChild(removeButton);
@@ -41,6 +47,7 @@ function buildTable() {
             td.textContent = book[property];
             tr.appendChild(td);
         }
+        addReadButton(tr);
         addRemoveButton(tr, index);       
         table.appendChild(tr);
     })
@@ -73,3 +80,10 @@ function render() {
     buildTable();
 }
 
+function toggleRead(e) {
+    if (e.target.previousSibling.textContent === 'true') {
+        e.target.previousSibling.textContent = 'false';
+    } else {
+        e.target.previousSibling.textContent = 'true';
+    }
+}
