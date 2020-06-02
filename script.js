@@ -7,7 +7,7 @@ addBookToLibrary(theHobbit);
 addBookToLibrary(theWayOfKings);
 render();
 
-document.querySelector('#newBook').addEventListener('click', getBook);
+document.querySelector('#new-book').addEventListener('click', getBook);
 
 // CONSTRUCTOR FUNCTIONS----------------------------------------------------------------------------------------
 function Book(title, author, pages, read) {
@@ -17,9 +17,33 @@ function Book(title, author, pages, read) {
     this.read = read;
 }
 
-// HELPER FUNCTIONS--------------------------------------------------------------------------------------------
+// HELPER FUNCTIONS (ALPHABETICAL)------------------------------------------------------------------------------
 function addBookToLibrary(book) {
     myLibrary.push(book);
+}
+
+function addRemoveButton(tr, index) {
+    const removeButton = document.createElement('button')
+    removeButton.textContent = 'Remove Book';
+    removeButton.classList.add('remove-button')
+    removeButton.setAttribute('data-index', index);
+    removeButton.addEventListener('click', removeBook);
+    tr.appendChild(removeButton);
+}
+
+function buildTable() {
+    const table = document.querySelector('table');
+    myLibrary.forEach(book => {
+        const index = myLibrary.indexOf(book);
+        const tr = document.createElement('tr');
+        for (let property in book) {
+            const td = document.createElement('td');
+            td.textContent = book[property];
+            tr.appendChild(td);
+        }
+        addRemoveButton(tr, index);       
+        table.appendChild(tr);
+    })
 }
 
 function clearTable() {
@@ -39,23 +63,13 @@ function getBook() {
     render();
 }
 
-function render() {
-    clearTable();
-    const table = document.querySelector('table');
-    myLibrary.forEach(book => {
-        const tr = document.createElement('tr');
-        for (let property in book) {
-            const td = document.createElement('td');
-            td.textContent = book[property];
-            tr.appendChild(td);
-        }
-        addRemoveButton(tr);       
-        table.appendChild(tr);
-    })
+function removeBook(e) {
+    myLibrary.splice(e.target.dataset.index, 1);
+    render();
 }
 
-function addRemoveButton(tr) {
-    const removeButton = document.createElement('button')
-    removeButton.textContent = 'Remove Book';
-    tr.appendChild(removeButton);
+function render() {
+    clearTable();
+    buildTable();
 }
+
