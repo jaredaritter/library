@@ -22,9 +22,10 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function addReadButton(tr) {
+function addReadButton(tr, index) {
     const readButton = document.createElement('button');
     readButton.textContent = 'Read?';
+    readButton.setAttribute('data-index', index);
     readButton.addEventListener('click', toggleRead);
     tr.appendChild(readButton);
 }
@@ -47,7 +48,7 @@ function buildTable() {
             td.textContent = book[property];
             tr.appendChild(td);
         }
-        addReadButton(tr);
+        addReadButton(tr, index);
         addRemoveButton(tr, index);       
         table.appendChild(tr);
     })
@@ -81,9 +82,10 @@ function render() {
 }
 
 function toggleRead(e) {
-    if (e.target.previousSibling.textContent === 'true') {
-        e.target.previousSibling.textContent = 'false';
+    if (myLibrary[e.target.dataset.index].read) {
+        myLibrary[e.target.dataset.index].read = false;
     } else {
-        e.target.previousSibling.textContent = 'true';
+        myLibrary[e.target.dataset.index].read = true;
     }
+    render();
 }
