@@ -1,23 +1,34 @@
 let myLibrary = [];
 
+document.querySelector('#new-book').addEventListener('click', getBook);
+
+// CLASS AND STARTER BOOKS ------------------------------------------------------------------------------------
+
+class Book {
+    constructor(title, author, pages, read) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+    }
+}
+
 const theHobbit = new Book('The Hobbit', 'J.R.R Tolkien', 560, true);
 const theWayOfKings = new Book('The Way Of Kings', 'Brandon Sanderson', 754, true);
 
 addBookToLibrary(theHobbit);
 addBookToLibrary(theWayOfKings);
+
 render();
 
-document.querySelector('#new-book').addEventListener('click', getBook);
-
-// CONSTRUCTOR FUNCTIONS----------------------------------------------------------------------------------------
-function Book(title, author, pages, read) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
+class Library {
+    constructor(name){
+        this.name = name;
+    }
+    // ATTEMPTING TO CONVERT LIBRARY TO CLASS AS WELL
 }
-
 // HELPER FUNCTIONS (ALPHABETICAL)------------------------------------------------------------------------------
+
 function addBookToLibrary(book) {
     myLibrary.push(book);
 }
