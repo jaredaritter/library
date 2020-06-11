@@ -1,6 +1,7 @@
 let myLibrary = [];
 
 document.querySelector('#new-book').addEventListener('click', getBook);
+// document.querySelector('#new-library').addEventListener('click', getInfo);
 
 // CLASS AND STARTER BOOKS ------------------------------------------------------------------------------------
 
@@ -21,12 +22,20 @@ addBookToLibrary(theWayOfKings);
 
 render();
 
-class Library {
-    constructor(name){
-        this.name = name;
-    }
-    // ATTEMPTING TO CONVERT LIBRARY TO CLASS AS WELL
-}
+// class Library {
+//     books = [];
+//     constructor(name){
+//         this.name = name;
+//     }
+//     build = () => {
+//         const body = document.querySelector('body');
+//         const div = document.createElement('div');
+//         div.textContent = `${this.name}'s library`;
+//         body.appendChild(div);
+//     }
+// }
+
+// const test = new Library('Suzie');
 // HELPER FUNCTIONS (ALPHABETICAL)------------------------------------------------------------------------------
 
 function addBookToLibrary(book) {
@@ -100,3 +109,10 @@ function toggleRead(e) {
     }
     render();
 }
+
+// ADDING NEW LIBRARIES TO PAGE
+// function getInfo(event) {
+//     let name = prompt('What is your name?');
+//     const newLibrary = new Library(name);
+//     newLibrary.build();
+// }
