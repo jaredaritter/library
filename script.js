@@ -42,7 +42,7 @@ function addBookToLibrary(book) {
     myLibrary.push(book);
 }
 
-function addReadButton(tr, index) {
+function createReadButton(tr, index) {
     const readButton = document.createElement('button');
     readButton.textContent = 'Read?';
     readButton.setAttribute('data-index', index);
@@ -50,7 +50,7 @@ function addReadButton(tr, index) {
     tr.appendChild(readButton);
 }
 
-function addRemoveButton(tr, index) {
+function createRemoveButton(tr, index) {
     const removeButton = document.createElement('button')
     removeButton.textContent = 'Remove Book';
     removeButton.setAttribute('data-index', index);
@@ -68,16 +68,16 @@ function buildTable() {
             td.textContent = book[property];
             tr.appendChild(td);
         }
-        addReadButton(tr, index);
-        addRemoveButton(tr, index);       
+        createReadButton(tr, index);
+        createRemoveButton(tr, index);       
         table.appendChild(tr);
     })
 }
 
 function clearTable() {
     const table = document.querySelector('table');
-    while(table.firstChild) {
-        table.removeChild(table.lastChild);
+    while(table.firstElementChild !== table.lastElementChild) {
+        table.removeChild(table.lastElementChild);
     }
 }
 
