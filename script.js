@@ -82,10 +82,11 @@ function clearTable() {
 }
 
 function getBook() {
-    const title = prompt("What is the title?");
-    const author = prompt("Who is the author?");
-    const pages = Number(prompt("How many pages does it have?"));
-    const read = prompt("Have you read it? (true/false)")
+    const form = document.querySelector('form');
+    const title = form.title.value;
+    const author = form.author.value;
+    const pages = form.pages.value;
+    const read = form.read.value;
     const newBook = new Book(title, author, pages, read);
     addBookToLibrary(newBook);
     render();
