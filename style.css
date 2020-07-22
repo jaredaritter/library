@@ -1,0 +1,7 @@
+input:invalid {
+  background-color: hsl(0, 100%, 95%);
+}
+
+input:valid {
+  background-color: hsl(120, 100%, 95%);
+}

@@ -84,15 +84,20 @@ function clearTable() {
 function getBook() {
     const form = document.querySelector('form');
     const inputs = document.querySelectorAll('input');
-
-    const title = form.title.value;
-    const author = form.author.value;
-    const pages = form.pages.value;
-    const read = form.read.value;
-    const newBook = new Book(title, author, pages, read);
-    inputs.forEach(input => input.value = '');
-    addBookToLibrary(newBook);
-    render();
+    let formIsValid = true;
+    inputs.forEach(input => {
+        if (!input.validity.valid) formIsValid = false;
+    })
+    if (formIsValid) {
+        const title = form.title.value;
+        const author = form.author.value;
+        const pages = form.pages.value;
+        const read = form.read.value;
+        const newBook = new Book(title, author, pages, read);
+        inputs.forEach(input => input.value = '');
+        addBookToLibrary(newBook);
+        render();
+    }   
 }
 
 function removeBook(e) {
