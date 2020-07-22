@@ -83,11 +83,14 @@ function clearTable() {
 
 function getBook() {
     const form = document.querySelector('form');
+    const inputs = document.querySelectorAll('input');
+
     const title = form.title.value;
     const author = form.author.value;
     const pages = form.pages.value;
     const read = form.read.value;
     const newBook = new Book(title, author, pages, read);
+    inputs.forEach(input => input.value = '');
     addBookToLibrary(newBook);
     render();
 }
